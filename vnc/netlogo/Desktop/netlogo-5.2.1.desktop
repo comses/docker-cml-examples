@@ -1,0 +1,6 @@
+[Desktop Entry]
+Version=1.0
+Name=NetLogo
+Type=Application
+Icon=netlogo
+Exec=/root/netlogo-5.2.1/netlogo.sh

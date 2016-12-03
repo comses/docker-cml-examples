@@ -1,0 +1,36 @@
+version: '2'
+services:
+  base:
+    build: .
+
+  netlogo53:
+    build:
+      context: .
+      dockerfile: netlogo/Dockerfile.netlogo53
+      args:
+        - NetLogoVersion=5.3.1
+        - NetLogo64=-64
+        - NetLogoName=NetLogo
+        - NetLogoExt=tgz
+        - NetLogoPath=/root/netlogo-5.3.1-64/NetLogo
+    ports:
+      - "127.0.0.1:5901:5901"
+      - "127.0.0.1:6901:6901"
+    volumes:
+      - "../projects:/root/Documents/projects"
+
+  netlogo52:
+    build:
+      context: .
+      dockerfile: netlogo/Dockerfile.netlogo52
+      args:
+        - NetLogoVersion=5.2.1
+        - NetLogo64=
+        - NetLogoName=netlogo
+        - NetLogoExt=tar.gz
+        - NetLogoPath=/root/netlogo-5.2.1/netlogo.sh
+    ports:
+      - "127.0.0.1:5902:5901"
+      - "127.0.0.1:6902:6901"
+    volumes:
+      - "../projects:/root/Documents/projects"

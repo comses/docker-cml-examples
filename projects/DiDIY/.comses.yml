@@ -1,0 +1,12 @@
+---
+language: netlogo
+version: 5.3.1
+extensions:
+  - name: factbase
+    url: http://cfpm.org/file_download/163/factbase.zip
+  - name: rnd
+    url: https://github.com/NetLogo/Rnd-Extension/releases/download/v2.0.0/rnd.zip
+  - reflection:
+    url: https://github.com/NetLogo/Reflection-Extension/releases/download/v0.1/reflection.zip
+  - name: string
+    url: 
