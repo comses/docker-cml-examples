@@ -18,7 +18,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION
 ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 
 ############### add linux-mint dependicies and update packages
-RUN apt-key adv --recv-key --keyserver keyserver.ubuntu.com "3EE67F3D0FF405B2"
+RUN apt-key adv --recv-key --keyserver hkp://keyserver.ubuntu.com:80 "3EE67F3D0FF405B2"
 RUN echo "deb http://packages.linuxmint.com/ rafaela main upstream import" >> /etc/apt/sources.list.d/mint.list \
     && echo "deb http://extra.linuxmint.com/ rafaela main " >> /etc/apt/sources.list.d/mint.list
 
