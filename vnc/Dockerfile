@@ -18,12 +18,12 @@ ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION
 ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 
 ############### add linux-mint dependicies and update packages
-RUN apt-key adv --recv-key --keyserver hkp://keyserver.ubuntu.com:80 "3EE67F3D0FF405B2"
+# RUN apt-key adv --recv-key --keyserver keyserver.ubuntu.com "3EE67F3D0FF405B2"
 RUN echo "deb http://packages.linuxmint.com/ rafaela main upstream import" >> /etc/apt/sources.list.d/mint.list \
     && echo "deb http://extra.linuxmint.com/ rafaela main " >> /etc/apt/sources.list.d/mint.list
 
 ############### xvnc / xfce installation
-RUN apt-get update && apt-get upgrade -y && apt-get install -y supervisor vim xfce4 vnc4server wget && rm -rf /var/lib/apt/
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --force-yes supervisor vim xfce4 vnc4server wget && rm -rf /var/lib/apt/
 ### Install noVNC - HTML5 based VNC viewer
 RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     && wget -qO- https://github.com/ConSol/noVNC/archive/consol_1.0.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME \

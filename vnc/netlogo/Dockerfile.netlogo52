@@ -8,16 +8,16 @@ ARG NetLogoExt=tgz
 ARG NetLogoPath
 
 ##### Add NetLogo
-RUN cd ~ \
+RUN cd /usr/local \
     && wget http://ccl.northwestern.edu/netlogo/${NetLogoVersion}/${NetLogoName}-${NetLogoVersion}${NetLogo64}.${NetLogoExt} \
     && tar xf ${NetLogoName}-${NetLogoVersion}${NetLogo64}.${NetLogoExt} \
     && rm ${NetLogoName}-${NetLogoVersion}${NetLogo64}.${NetLogoExt}
 
 ADD .vnc /root/.vnc
 ADD .config /root/.config
-ADD netlogo/Desktop/netlogo-${NetLogoVersion}.desktop /root/Desktop/netlogo.desktop
+ADD netlogo/Desktop/netlogo-5.2.1.desktop /usr/share/applications/netlogo-5.2.1.desktop
 ADD scripts /root/scripts
-RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh /root/Desktop/*.desktop
+RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh
 
 ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
 CMD ["--tail-log"]
