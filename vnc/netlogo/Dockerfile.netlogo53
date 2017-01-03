@@ -13,13 +13,19 @@ RUN cd /usr/local \
     && tar xf ${NetLogoName}-${NetLogoVersion}${NetLogo64}.${NetLogoExt} \
     && rm ${NetLogoName}-${NetLogoVersion}${NetLogo64}.${NetLogoExt}
 
-ADD .vnc /root/.vnc
-ADD .config /root/.config
+ADD .vnc /usr/local/vnc/.vnc
+ADD .config /usr/local/vnc/.config
 
 # Add NetLogo shortcut in 'Applications' menu
 ADD netlogo/Desktop/netlogo-5.3.1.desktop /usr/share/applications/netlogo-5.3.1.desktop
-ADD scripts /root/scripts
-RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh
+ADD scripts /usr/local/vnc/scripts
+RUN chmod +x /usr/local/vnc/.vnc/xstartup /etc/X11/xinit/xinitrc /usr/local/vnc/scripts/*.sh \
+    && chmod +rx /usr/share/applications/netlogo-5.3.1.desktop \
+    && chmod +x /usr/local/netlogo-5.3.1-64/NetLogo /usr/local/netlogo-5.3.1-64/NetLogo3D /usr/local/netlogo-5.3.1-64/NetLogoLogging \
+    && chmod +x $NO_VNC_HOME/utils/launch.sh \
+    && chmod -R +rw /usr/local/vnc/.vnc \
+    && ln -s /usr/local/vnc/.vnc /root/.vnc \
+    && ln -s /usr/local/vnc/.config /root/.config
 
-ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
+ENTRYPOINT ["/usr/local/vnc/scripts/vnc_startup.sh"]
 CMD ["--tail-log"]
